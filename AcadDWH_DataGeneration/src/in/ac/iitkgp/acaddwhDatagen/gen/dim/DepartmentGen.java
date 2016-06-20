@@ -1,5 +1,6 @@
 package in.ac.iitkgp.acaddwhDatagen.gen.dim;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,8 +15,17 @@ public class DepartmentGen {
 		Set<String> keys = new HashSet<String>();
 		String key = null;
 
-		for (int i = 0; i < 36; ++i) {
-			System.out.println("Initiating line " + i + "...");
+		ArrayList<String> elems = new ArrayList<String>();
+		ArrayList<Double> freqs = new ArrayList<Double>();
+		elems.add("Department");
+		freqs.add(3.0);
+		elems.add("School");
+		freqs.add(2.0);
+		elems.add("Center");
+		freqs.add(1.0);
+
+		for (int i = 0; i < 56; ++i) {
+			System.out.println("Initiating line " + (i + 1) + "...");
 			while (key == null || keys.contains(key)) {
 				key = RandomGen.getString(2);
 			}
@@ -23,19 +33,21 @@ public class DepartmentGen {
 
 			String deptCode = key;
 			String deptName = RandomGen.getString(RandomGen.getIntInRange(10, 15));
-			String deptDcsType = RandomGen.getString(5);
+			deptName = deptName.charAt(0) + deptName.substring(1).toLowerCase();
+
+			String deptDcsType = RandomGen.getFromPSet(elems, freqs);
 
 			content.append(deptCode + ",");
 			content.append(deptName + ",");
 			content.append(deptDcsType + "\n");
 
 		}
-		
+
 		return content.toString();
 	}
 
 	public static void main(String[] args) {
-		String filePath = ProjectInfo.getPathToStore() + "Department_36" + ".csv";
+		String filePath = ProjectInfo.getPathToStore() + "dim_Department_56" + ".csv";
 
 		System.out.println("Generating content...");
 		String content = new DepartmentGen().generate();
