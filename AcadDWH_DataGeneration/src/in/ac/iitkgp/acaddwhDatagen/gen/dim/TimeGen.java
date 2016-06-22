@@ -17,7 +17,7 @@ public class TimeGen {
 		acadsemesters.add("Autumn");
 		acadsemesters.add("Spring");
 
-		for (int i = 2010; i < 2021; ++i) {
+		for (int i = ProjectInfo.get_firstOfStartingYear(); i <= ProjectInfo.get_firstOfEndingYear(); ++i) {
 			acadsessions.add(i + "-" + (i + 1));
 		}
 
@@ -39,7 +39,7 @@ public class TimeGen {
 
 	public static void main(String[] args) {
 		try {
-			String filePath = ProjectInfo.getPathToStore() + "dim_Time_20" + ".csv";
+			String filePath = ProjectInfo.getPathToStore() + "dim_times_" + ProjectInfo.getSizeDimTimes() + ".csv";
 
 			System.out.println("Generating content...");
 			String content = new TimeGen().generate();
@@ -49,7 +49,7 @@ public class TimeGen {
 			DataWriter.writeToFile(filePath, content);
 			System.out.println("File path: " + filePath);
 		} catch (Exception e) {
-			System.out.println("Aborted!");
+			System.out.println("Aborted!"); throw(e);
 		}
 	}
 

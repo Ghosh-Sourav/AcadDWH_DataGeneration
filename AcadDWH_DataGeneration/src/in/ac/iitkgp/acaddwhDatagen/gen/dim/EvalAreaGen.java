@@ -11,10 +11,10 @@ public class EvalAreaGen {
 	public String generate() {
 		StringBuffer content = new StringBuffer();
 
-		for (int i = 0; i < 32; ++i) {
+		for (int i = 0; i < ProjectInfo.getSizeDimEvalAreas(); ++i) {
 			System.out.println("Initiating line " + i + "...");
 
-			String evalAreaCode = new DecimalFormat("EA00").format(i + 1);
+			String evalAreaCode = new DecimalFormat("EA000").format(i + 1);
 
 			String evalArea = RandomGen.getString(RandomGen.getIntInRange(8, 18));
 			evalArea = evalArea.charAt(0) + evalArea.substring(1).toLowerCase();
@@ -28,7 +28,7 @@ public class EvalAreaGen {
 
 	public static void main(String[] args) {
 		try {
-			String filePath = ProjectInfo.getPathToStore() + "dim_EvalArea_32" + ".csv";
+			String filePath = ProjectInfo.getPathToStore() + "dim_eval_areas_"+ProjectInfo.getSizeDimEvalAreas() + ".csv";
 
 			System.out.println("Generating content...");
 			String content = new EvalAreaGen().generate();
@@ -38,7 +38,7 @@ public class EvalAreaGen {
 			DataWriter.writeToFile(filePath, content);
 			System.out.println("File path: " + filePath);
 		} catch (Exception e) {
-			System.out.println("Aborted!");
+			System.out.println("Aborted!"); throw(e);
 		}
 	}
 

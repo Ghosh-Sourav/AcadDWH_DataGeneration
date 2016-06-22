@@ -8,9 +8,9 @@ public class RegtypeGen {
 	public String generate() {
 		StringBuffer content = new StringBuffer();
 
-		String[] regtypes = {"Normal", "Audit", "Crash"};
-		
-		for (String regtype: regtypes) {
+		String[] regtypes = { "Normal", "Audit", "Crash" };
+
+		for (String regtype : regtypes) {
 			System.out.println("Initiating line " + regtype + "...");
 
 			String regtypeCode = regtype.substring(0, 4).toUpperCase();
@@ -21,13 +21,14 @@ public class RegtypeGen {
 			content.append(regtypeDesc + "\n");
 		}
 
-		//content.deleteCharAt(content.length()-1);
+		// content.deleteCharAt(content.length()-1);
 		return content.toString();
 	}
 
 	public static void main(String[] args) {
 		try {
-			String filePath = ProjectInfo.getPathToStore() + "dim_Regtype_3" + ".csv";
+			String filePath = ProjectInfo.getPathToStore() + "dim_regtypes_" + ProjectInfo.getSizeDimRegtypes()
+					+ ".csv";
 
 			System.out.println("Generating content...");
 			String content = new RegtypeGen().generate();
@@ -37,7 +38,7 @@ public class RegtypeGen {
 			DataWriter.writeToFile(filePath, content);
 			System.out.println("File path: " + filePath);
 		} catch (Exception e) {
-			System.out.println("Aborted!");
+			System.out.println("Aborted!"); throw(e);
 		}
 	}
 

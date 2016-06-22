@@ -33,7 +33,7 @@ public class StudentGen {
 		elemsGender.add("F");
 		freqsGender.add(40.0);
 
-		for (int i = 0; i < 40000; ++i) {
+		for (int i = 0; i < ProjectInfo.getSizeDimStudents(); ++i) {
 			System.out.println("Initiating line " + (i + 1) + "...");
 
 			String studentCode = null;
@@ -41,7 +41,8 @@ public class StudentGen {
 			String admissionYear = null;
 			do {
 				splKey = RandomGen.getFromPSet(elemsSplK, freqsSplK);
-				admissionYear = "" + RandomGen.getIntInRange(2010, 2016);
+				admissionYear = "" + RandomGen.getIntInRange(ProjectInfo.get_firstOfStartingYear(),
+						ProjectInfo.get_firstOfEndingYear());
 				studentCode = admissionYear.substring(2, 4) + splKey
 						+ RandomGen.getFromPSet(elemsCategory, freqsCategory) + RandomGen.getNumber(2);
 				uniqueVal = studentCode;
@@ -64,11 +65,13 @@ public class StudentGen {
 		return content.toString();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		try {
-			String filePath = ProjectInfo.getPathToStore() + "dim_Student_40000" + ".csv";
+			String filePath = ProjectInfo.getPathToStore() + "dim_students_" + ProjectInfo.getSizeDimStudents()
+					+ ".csv";
 
-			String filePathSpl = ProjectInfo.getPathToStore() + "dim_Specialisation_224" + ".csv";
+			String filePathSpl = ProjectInfo.getPathToStore() + "dim_specialisations_"
+					+ ProjectInfo.getSizeDimSpecialisations() + ".csv";
 
 			System.out.println("Reading " + filePathSpl + "...");
 			ArrayList<String> splKeys = new DataReader().getFKeys(filePathSpl);
@@ -83,6 +86,7 @@ public class StudentGen {
 			System.out.println("File path: " + filePath);
 		} catch (Exception e) {
 			System.out.println("Aborted!");
+			throw (e);
 		}
 	}
 

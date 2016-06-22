@@ -32,7 +32,7 @@ public class CourseGen {
 		String[] elemsCourseLevel = { "UG", "PG" };
 		Double[] freqsCourseLevel = { 70.0, 30.0 };
 
-		for (int i = 0; i < 4500; ++i) {
+		for (int i = 0; i < ProjectInfo.getSizeDimCourses(); ++i) {
 			System.out.println("Initiating line " + (i + 1) + "...");
 
 			String courseName = RandomGen.getString(RandomGen.getIntInRange(14, 20));
@@ -107,11 +107,12 @@ public class CourseGen {
 		return content.toString();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		try {
-			String filePath = ProjectInfo.getPathToStore() + "dim_Course_4500" + ".csv";
+			String filePath = ProjectInfo.getPathToStore() + "dim_courses_" + ProjectInfo.getSizeDimCourses() + ".csv";
 
-			String filePathDept = ProjectInfo.getPathToStore() + "dim_Department_56" + ".csv";
+			String filePathDept = ProjectInfo.getPathToStore() + "dim_departments_"
+					+ ProjectInfo.getSizeDimDepartments() + ".csv";
 
 			System.out.println("Reading " + filePathDept + "...");
 			ArrayList<String> deptKeys = new DataReader().getFKeys(filePathDept);
@@ -126,6 +127,7 @@ public class CourseGen {
 			System.out.println("File path: " + filePath);
 		} catch (Exception e) {
 			System.out.println("Aborted!");
+			throw (e);
 		}
 	}
 

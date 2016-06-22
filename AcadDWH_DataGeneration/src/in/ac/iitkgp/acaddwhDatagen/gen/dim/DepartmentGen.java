@@ -24,7 +24,7 @@ public class DepartmentGen {
 		elems.add("Center");
 		freqs.add(1.0);
 
-		for (int i = 0; i < 56; ++i) {
+		for (int i = 0; i < ProjectInfo.getSizeDimDepartments(); ++i) {
 			System.out.println("Initiating line " + (i + 1) + "...");
 			while (key == null || keys.contains(key)) {
 				key = RandomGen.getString(2);
@@ -47,15 +47,21 @@ public class DepartmentGen {
 	}
 
 	public static void main(String[] args) {
-		String filePath = ProjectInfo.getPathToStore() + "dim_Department_56" + ".csv";
+		try {
+			String filePath = ProjectInfo.getPathToStore() + "dim_departments_" + ProjectInfo.getSizeDimDepartments()
+					+ ".csv";
 
-		System.out.println("Generating content...");
-		String content = new DepartmentGen().generate();
-		System.out.println("Content generated");
+			System.out.println("Generating content...");
+			String content = new DepartmentGen().generate();
+			System.out.println("Content generated");
 
-		System.out.println("Writing to file...");
-		DataWriter.writeToFile(filePath, content);
-		System.out.println("File path: " + filePath);
+			System.out.println("Writing to file...");
+			DataWriter.writeToFile(filePath, content);
+			System.out.println("File path: " + filePath);
+		} catch (Exception e) {
+			System.out.println("Aborted!");
+			throw (e);
+		}
 	}
 
 }

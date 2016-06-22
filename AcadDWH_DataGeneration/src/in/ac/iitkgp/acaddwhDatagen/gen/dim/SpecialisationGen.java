@@ -32,12 +32,16 @@ public class SpecialisationGen {
 		freqsSDL.add(1.0);
 		elemsSDL.add("M.Tech,5");
 		freqsSDL.add(8.0);
+		elemsSDL.add("B.Tech + M.Tech,5");
+		freqsSDL.add(2.0);
 		elemsSDL.add("M.S.,5");
 		freqsSDL.add(3.0);
 		elemsSDL.add("Ph.D.,6");
 		freqsSDL.add(6.0);
+		elemsSDL.add("M.Tech + Ph.D.,6");
+		freqsSDL.add(3.0);
 
-		for (int i = 0; i < 224; ++i) {
+		for (int i = 0; i < ProjectInfo.getSizeDimSpecialisations(); ++i) {
 			System.out.println("Initiating line " + (i + 1) + "...");
 
 			String splName = RandomGen.getString(RandomGen.getIntInRange(10, 15));
@@ -69,11 +73,11 @@ public class SpecialisationGen {
 		return content.toString();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		try {
-			String filePath = ProjectInfo.getPathToStore() + "dim_Specialisation_224" + ".csv";
+			String filePath = ProjectInfo.getPathToStore() + "dim_specialisations_" +ProjectInfo.getSizeDimSpecialisations()+ ".csv";
 
-			String filePathDept = ProjectInfo.getPathToStore() + "dim_Department_56" + ".csv";
+			String filePathDept = ProjectInfo.getPathToStore() + "dim_departments_"+ProjectInfo.getSizeDimDepartments() + ".csv";
 
 			System.out.println("Reading " + filePathDept + "...");
 			ArrayList<String> deptKeys = new DataReader().getFKeys(filePathDept);
@@ -87,7 +91,7 @@ public class SpecialisationGen {
 			DataWriter.writeToFile(filePath, content);
 			System.out.println("File path: " + filePath);
 		} catch (Exception e) {
-			System.out.println("Aborted!");
+			System.out.println("Aborted!"); throw(e);
 		}
 	}
 

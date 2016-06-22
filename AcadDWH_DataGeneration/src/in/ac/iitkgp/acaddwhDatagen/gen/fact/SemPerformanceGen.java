@@ -52,12 +52,15 @@ public class SemPerformanceGen {
 		return content.toString();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		try {
-			String filePath = ProjectInfo.getPathToStore() + "fact_SemPerformance_40000" + ".csv";
+			String filePath = ProjectInfo.getPathToStore() + "fact_sem_performance_"
+					+ ProjectInfo.getSizeFactSemPerformance() + ".csv";
 
-			String filePathSpl = ProjectInfo.getPathToStore() + "dim_Specialisation_224" + ".csv";
-			String filePathStudent = ProjectInfo.getPathToStore() + "dim_Student_40000" + ".csv";
+			String filePathSpl = ProjectInfo.getPathToStore() + "dim_specialisations_"
+					+ ProjectInfo.getSizeDimSpecialisations() + ".csv";
+			String filePathStudent = ProjectInfo.getPathToStore() + "dim_students_" + ProjectInfo.getSizeDimStudents()
+					+ ".csv";
 
 			System.out.println("Reading " + filePathSpl + "...");
 			ArrayList<String> splKeys = new DataReader().getFKeys(filePathSpl);
@@ -76,6 +79,7 @@ public class SemPerformanceGen {
 			System.out.println("File path: " + filePath);
 		} catch (Exception e) {
 			System.out.println("Aborted!");
+			throw (e);
 		}
 	}
 

@@ -26,14 +26,14 @@ public class TeacherGen {
 		String[] elemsDesignation = { "Associate Professor", "Professor", "Visiting Professor" };
 		Double[] freqsDesignation = { 65.0, 30.0, 5.0 };
 
-		for (int i = 0; i < 3000; ++i) {
+		for (int i = 0; i < ProjectInfo.getSizeDimTeachers(); ++i) {
 			System.out.println("Initiating line " + (i + 1) + "...");
 
 			String teacherCode = null;
 			String deptKey = null;
 			do {
 				deptKey = RandomGen.getFromPSet(elemsDK, freqsDK);
-				teacherCode = deptKey + RandomGen.getNumber(3);
+				teacherCode = deptKey + RandomGen.getNumber(10);
 				uniqueVal = teacherCode;
 			} while (uniqueVals.contains(uniqueVal));
 			uniqueVals.add(uniqueVal);
@@ -49,11 +49,13 @@ public class TeacherGen {
 		return content.toString();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		try {
-			String filePath = ProjectInfo.getPathToStore() + "dim_Teacher_3000" + ".csv";
+			String filePath = ProjectInfo.getPathToStore() + "dim_teachers_" + ProjectInfo.getSizeDimTeachers()
+					+ ".csv";
 
-			String filePathDept = ProjectInfo.getPathToStore() + "dim_Department_56" + ".csv";
+			String filePathDept = ProjectInfo.getPathToStore() + "dim_departments_"
+					+ ProjectInfo.getSizeDimDepartments() + ".csv";
 
 			System.out.println("Reading " + filePathDept + "...");
 			ArrayList<String> deptKeys = new DataReader().getFKeys(filePathDept);
@@ -68,6 +70,7 @@ public class TeacherGen {
 			System.out.println("File path: " + filePath);
 		} catch (Exception e) {
 			System.out.println("Aborted!");
+			throw (e);
 		}
 	}
 
