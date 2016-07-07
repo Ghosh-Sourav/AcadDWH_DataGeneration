@@ -2,7 +2,7 @@ package in.ac.iitkgp.acaddwhDatagen.config;
 
 public class ProjectInfo {
 	private static String pathToStoreWindows = "G:/AcadDWH/Datagen/";
-	private static String pathToStoreLinux = "~/AcadDWH/Datagen/";
+	private static String pathToStoreLinux = "/home/sourav/AcadDWH/Datagen/";
 
 	private static long sizeDimDepartments = 68;
 	private static long sizeDimSpecialisations = 400;
