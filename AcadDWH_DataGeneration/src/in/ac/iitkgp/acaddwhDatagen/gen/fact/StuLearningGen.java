@@ -54,7 +54,7 @@ public class StuLearningGen {
 
 			for (int i = 0; i < timeKeysWithStartingYear.size(); ++i) {
 				String timeKeyWithStartingYear = timeKeysWithStartingYear.get(i);
-				System.out.println("timeKeyWithStartingYear=" + timeKeyWithStartingYear);
+				//System.out.println("timeKeyWithStartingYear=" + timeKeyWithStartingYear);
 				String timeKey = timeKeyWithStartingYear.split(",")[0];
 				int startingYear = Integer.parseInt(timeKeyWithStartingYear.split(",")[1]);
 				if (timeKey.endsWith("AUT") && startingYear == admYr) {
