@@ -3,8 +3,6 @@ package in.ac.iitkgp.acaddwhDatagen.util;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import in.ac.iitkgp.acaddwhDatagen.config.ProjectInfo;
-
 public class RandomGen {
 	private static final String ALPHA_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private static final String NUMERIC_STRING = "0123456789";
@@ -108,7 +106,111 @@ public class RandomGen {
 
 		return (new DecimalFormat("#.00").format(cgpa));
 	}
-	
+
+	public static String getPercentAttended() {
+		ArrayList<String> elems = new ArrayList<String>();
+		ArrayList<Double> freqs = new ArrayList<Double>();
+		elems.add("9.5");
+		freqs.add(4.0);
+		elems.add("9.0");
+		freqs.add(8.0);
+		elems.add("8.5");
+		freqs.add(16.0);
+		elems.add("8.0");
+		freqs.add(18.0);
+		elems.add("7.5");
+		freqs.add(19.0);
+		elems.add("7.0");
+		freqs.add(15.0);
+		elems.add("6.5");
+		freqs.add(10.0);
+		elems.add("6.0");
+		freqs.add(8.0);
+		elems.add("5.5");
+		freqs.add(2.0);
+
+		double attendance = Double.parseDouble(getFromPSet(elems, freqs));
+		attendance += Math.random() * 0.5;
+		attendance = Math.round(attendance * 100);
+		if (attendance != 100 && getIntInRange(0, 1) == 0) {
+			attendance += 1;
+		}
+
+		return (new DecimalFormat("#.0").format(attendance/10));
+	}
+
+	public static String getNumGrade(String characteristic) {
+		ArrayList<String> elems = new ArrayList<String>();
+		ArrayList<Double> freqs = new ArrayList<Double>();
+
+		if ("Good".equals(characteristic)) {
+			elems.add("9.5");
+			freqs.add(10.0);
+			elems.add("9.0");
+			freqs.add(22.0);
+			elems.add("8.5");
+			freqs.add(26.0);
+			elems.add("8.0");
+			freqs.add(22.0);
+			elems.add("7.5");
+			freqs.add(20.0);
+			
+		} else if ("Mediocre".equals(characteristic)) {
+			elems.add("9.0");
+			freqs.add(5.0);
+			elems.add("8.5");
+			freqs.add(22.0);
+			elems.add("8.0");
+			freqs.add(26.0);
+			elems.add("7.5");
+			freqs.add(22.0);
+			elems.add("7.0");
+			freqs.add(20.0);
+			elems.add("6.5");
+			freqs.add(5.0);
+			
+		} else if ("Poor".equals(characteristic)) {
+			elems.add("8.0");
+			freqs.add(9.0);
+			elems.add("7.5");
+			freqs.add(22.0);
+			elems.add("7.0");
+			freqs.add(26.0);
+			elems.add("6.5");
+			freqs.add(22.0);
+			elems.add("6.0");
+			freqs.add(20.0);
+			elems.add("5.5");
+			freqs.add(1.0);
+		}
+
+		double grade = Double.parseDouble(getFromPSet(elems, freqs));
+		grade += Math.random() * 0.5;
+		grade = Math.round(grade * 100);
+		if (grade != 100 && getIntInRange(0, 1) == 0) {
+			grade += 1;
+		}
+		grade /= 100;
+
+		return (new DecimalFormat("#").format(grade));
+	}
+
+	public static String getCharacteristic() {
+		ArrayList<String> elems = new ArrayList<String>();
+		ArrayList<Double> freqs = new ArrayList<Double>();
+
+		elems.add("Good");
+		freqs.add(22.0);
+		elems.add("Mediocre");
+		freqs.add(63.0);
+		elems.add("Poor");
+		freqs.add(15.0);
+
+		String characteristic = getFromPSet(elems, freqs);
+
+		return characteristic;
+	}
+
 	public static String getAverageTeachingQuality() {
 		ArrayList<String> elems = new ArrayList<String>();
 		ArrayList<Double> freqs = new ArrayList<Double>();
@@ -142,13 +244,21 @@ public class RandomGen {
 
 	public static void main(String[] args) {
 
-		StringBuffer content = new StringBuffer();
+		// StringBuffer content = new StringBuffer();
+		// for (int i = 0; i < 100000; i++) {
+		// System.out.println("Inititaing line " + i + "...");
+		// content.append(getIntInRange(100, 110) + "\n");
+		// }
+		// String filePath = ProjectInfo.getPathToStore() + "test_FILE" +
+		// ".csv";
+		// DataWriter.writeToFile(filePath, content.toString());
+		long count = 0;
 		for (int i = 0; i < 100000; i++) {
-			System.out.println("Inititaing line " + i + "...");
-			content.append(getIntInRange(100, 110) + "\n");
+			System.out.println("Pass " + i);
+			if (Integer.parseInt(getNumGrade("Mediocre")) == 9)
+				count++;
 		}
-		String filePath = ProjectInfo.getPathToStore() + "test_FILE" + ".csv";
-		DataWriter.writeToFile(filePath, content.toString());
+		System.out.println(count);
 
 	}
 }

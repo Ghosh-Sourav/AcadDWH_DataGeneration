@@ -11,6 +11,7 @@ import in.ac.iitkgp.acaddwhDatagen.gen.dim.TimeGen;
 import in.ac.iitkgp.acaddwhDatagen.gen.fact.SemPerformanceGen;
 import in.ac.iitkgp.acaddwhDatagen.gen.fact.SplPerformanceGen;
 import in.ac.iitkgp.acaddwhDatagen.gen.fact.TeachingQualityGen;
+import in.ac.iitkgp.acaddwhDatagen.gen.intermediate.StudentCharacteristicsGen;
 
 public class GenerationDriver {
 
@@ -25,9 +26,10 @@ public class GenerationDriver {
 			RegtypeGen.main(args);
 			TimeGen.main(args);
 			
+			StudentCharacteristicsGen.main(args);
+			//StuLearningGen.main(args);
 			SemPerformanceGen.main(args);
 			SplPerformanceGen.main(args);
-			
 			TeachingQualityGen.main(args);
 			
 		} catch (Exception e) {

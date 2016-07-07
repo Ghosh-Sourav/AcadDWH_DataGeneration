@@ -124,13 +124,13 @@ public class TeachingQualityGen {
 			ArrayList<String> teacherKeysWithDept = new DataReader().getTeacherKeysWithDept(filePathTeacher);
 			System.out.println(filePathTeacher + " read");
 
-			System.out.println("Reading " + filePathTeacher + "...");
+			System.out.println("Reading " + filePathTime + "...");
 			ArrayList<String> timeKeys = new DataReader().getFKeys(filePathTime);
-			System.out.println(filePathTeacher + " read");
+			System.out.println(filePathTime + " read");
 
-			System.out.println("Reading " + filePathTeacher + "...");
+			System.out.println("Reading " + filePathEvalArea + "...");
 			ArrayList<String> evalAreaKeys = new DataReader().getFKeys(filePathEvalArea);
-			System.out.println(filePathTeacher + " read");
+			System.out.println(filePathEvalArea + " read");
 
 			System.out.println("Generating content...");
 			String content = new TeachingQualityGen().generate(courseKeysWithDept, teacherKeysWithDept, timeKeys,

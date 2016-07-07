@@ -118,5 +118,61 @@ public class DataReader {
 
 		return dataValues;
 	}
+	
+	public ArrayList<String> getStudentKeysWithAdmYr(String filePathStudent) throws Exception {
+		ArrayList<String> dataValues = new ArrayList<String>();
+		BufferedReader br = null;
+		String line = null;
+
+		try {
+			br = new BufferedReader(new FileReader(filePathStudent));
+			while ((line = br.readLine()) != null) {
+				String[] values = line.split(",");
+				System.out.println("Extracted student: " + values[0] + ", admission year: " + values[4]);
+				dataValues.add(values[0] + "," + values[4]);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return dataValues;
+	}
+	
+	public ArrayList<String> getTimeKeysWithStartingYear(String filePathTime) throws Exception {
+		ArrayList<String> dataValues = new ArrayList<String>();
+		BufferedReader br = null;
+		String line = null;
+
+		try {
+			br = new BufferedReader(new FileReader(filePathTime));
+			while ((line = br.readLine()) != null) {
+				String[] values = line.split(",");
+				System.out.println("Extracted time: " + values[0] + ", starting year: " + values[2].split("-")[0]);
+				dataValues.add(values[0] + "," + values[2].split("-")[0]);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return dataValues;
+	}
 
 }

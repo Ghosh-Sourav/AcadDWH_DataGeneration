@@ -1,7 +1,8 @@
 package in.ac.iitkgp.acaddwhDatagen.config;
 
 public class ProjectInfo {
-	private static String pathToStore = "G:/AcadDWH/Datagen/";
+	private static String pathToStoreWindows = "G:/AcadDWH/Datagen/";
+	private static String pathToStoreLinux = "~/AcadDWH/Datagen/";
 
 	private static long sizeDimDepartments = 68;
 	private static long sizeDimSpecialisations = 400;
@@ -12,15 +13,21 @@ public class ProjectInfo {
 	private static long sizeDimRegtypes = 3;
 	private static int _firstOfStartingYear = 1966;
 	private static int _firstOfEndingYear = 2015;
-	private static long sizeDimTimes = 2 * (_firstOfEndingYear - _firstOfStartingYear);
+	private static long sizeDimTimes = 2 * (_firstOfEndingYear - _firstOfStartingYear + 1);
 
+	private static long sizeIntermediateStudentCharacteristics = 300000;
+
+	private static long sizeFactStuLearning = 210000000;
 	private static long sizeFactSemPerformance = 300000;
 	private static long sizeFactSplPerformance = 20000;
-	private static long sizeFactStuLearning = 0;
-	private static long sizeFactTeachingQuality = 38880000;
+	private static long sizeFactTeachingQuality = 6804000;
 
 	public static String getPathToStore() {
-		return pathToStore;
+		if (System.getProperty("os.name").contains("Windows")) {
+			return pathToStoreWindows;
+		} else {
+			return pathToStoreLinux;
+		}
 	}
 
 	public static long getSizeDimDepartments() {
@@ -63,6 +70,14 @@ public class ProjectInfo {
 		return sizeDimTimes;
 	}
 
+	public static long getSizeIntermediateStudentCharacteristics() {
+		return sizeIntermediateStudentCharacteristics;
+	}
+
+	public static long getSizeFactStuLearning() {
+		return sizeFactStuLearning;
+	}
+
 	public static long getSizeFactSemPerformance() {
 		return sizeFactSemPerformance;
 	}
@@ -71,11 +86,13 @@ public class ProjectInfo {
 		return sizeFactSplPerformance;
 	}
 
-	public static long getSizeFactStuLearning() {
-		return sizeFactStuLearning;
-	}
-
 	public static long getSizeFactTeachingQuality() {
 		return sizeFactTeachingQuality;
 	}
+
+	public static void main(String[] args) {
+		System.getProperties().list(System.out);
+		System.out.println(getPathToStore());
+	}
+
 }
