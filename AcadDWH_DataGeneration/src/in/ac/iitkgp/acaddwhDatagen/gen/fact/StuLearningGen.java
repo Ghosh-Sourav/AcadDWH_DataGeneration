@@ -13,7 +13,7 @@ import in.ac.iitkgp.acaddwhDatagen.util.RandomGen;
 
 public class StuLearningGen {
 
-	public String generate(ArrayList<String> courseKeysWithDept, ArrayList<String> studentKeysWithAdmYr,
+	public String generate(ArrayList<String> courseKeysWithDept, List<String> studentKeysWithAdmYr,
 			ArrayList<String> timeKeysWithStartingYear, ArrayList<String> regtypeKeys) {
 		StringBuffer content = new StringBuffer();
 
@@ -231,7 +231,7 @@ public class StuLearningGen {
 				int fromIndex = toIndex;
 				toIndex = Math.min(fromIndex + 100, studentKeysWithAdmYr.size());
 
-				ArrayList<String> subList_studentKeysWithAdmYr = (ArrayList<String>) studentKeysWithAdmYr
+				List<String> subList_studentKeysWithAdmYr = studentKeysWithAdmYr
 						.subList(fromIndex, toIndex);
 
 				System.out.println("Generating content... (" + fromIndex + "-" + toIndex + " of "
