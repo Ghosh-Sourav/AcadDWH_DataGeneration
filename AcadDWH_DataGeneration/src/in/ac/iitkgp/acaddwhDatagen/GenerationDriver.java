@@ -1,5 +1,6 @@
 package in.ac.iitkgp.acaddwhDatagen;
 
+import in.ac.iitkgp.acaddwhDatagen.config.ProjectInfo;
 import in.ac.iitkgp.acaddwhDatagen.gen.dim.CourseGen;
 import in.ac.iitkgp.acaddwhDatagen.gen.dim.DepartmentGen;
 import in.ac.iitkgp.acaddwhDatagen.gen.dim.EvalAreaGen;
@@ -12,41 +13,46 @@ import in.ac.iitkgp.acaddwhDatagen.gen.fact.SemPerformanceGen;
 import in.ac.iitkgp.acaddwhDatagen.gen.fact.SplPerformanceGen;
 import in.ac.iitkgp.acaddwhDatagen.gen.fact.StuLearningGen;
 import in.ac.iitkgp.acaddwhDatagen.gen.fact.TeachingQualityGen;
+import in.ac.iitkgp.acaddwhDatagen.util.DataWriter;
 
 public class GenerationDriver {
 
 	public static void main(String[] args) {
+		String filePath = ProjectInfo.getPathToStore() + "LOG_phaseStats.log";
 		try {
-			System.out.println("*** Phase 1 ***");
+			DataWriter.writeToFile(filePath, "");
+
+			DataWriter.appendToFile(filePath, "*** Phase 1 ***");
 			DepartmentGen.main(args);
-			System.out.println("*** Phase 2 ***");
+			DataWriter.appendToFile(filePath, "*** Phase 2 ***");
 			SpecialisationGen.main(args);
-			System.out.println("*** Phase 3 ***");
+			DataWriter.appendToFile(filePath, "*** Phase 3 ***");
 			StudentGen.main(args);
-			System.out.println("*** Phase 4 ***");
+			DataWriter.appendToFile(filePath, "*** Phase 4 ***");
 			TeacherGen.main(args);
-			System.out.println("*** Phase 5 ***");
+			DataWriter.appendToFile(filePath, "*** Phase 5 ***");
 			CourseGen.main(args);
-			System.out.println("*** Phase 6 ***");
+			DataWriter.appendToFile(filePath, "*** Phase 6 ***");
 			EvalAreaGen.main(args);
-			System.out.println("*** Phase 7 ***");
+			DataWriter.appendToFile(filePath, "*** Phase 7 ***");
 			RegtypeGen.main(args);
-			System.out.println("*** Phase 8 ***");
+			DataWriter.appendToFile(filePath, "*** Phase 8 ***");
 			TimeGen.main(args);
-			
-			//StudentCharacteristicsGen.main(args);
-			System.out.println("*** Phase 9 ***");
+
+			// StudentCharacteristicsGen.main(args);
+			DataWriter.appendToFile(filePath, "*** Phase 9 ***");
 			StuLearningGen.main(args);
-			System.out.println("*** Phase 10 ***");
+			DataWriter.appendToFile(filePath, "*** Phase 10 ***");
 			SemPerformanceGen.main(args);
-			System.out.println("*** Phase 11 ***");
+			DataWriter.appendToFile(filePath, "*** Phase 11 ***");
 			SplPerformanceGen.main(args);
-			System.out.println("*** Phase 12 ***");
+			DataWriter.appendToFile(filePath, "*** Phase 12 ***");
 			TeachingQualityGen.main(args);
-			
-			System.out.println("*** All Phases Successfully Completed! ***");
-			
+
+			DataWriter.appendToFile(filePath, "*** All Phases Successfully Completed! ***");
+
 		} catch (Exception e) {
+			DataWriter.appendToFile(filePath, "Driver stopped due to the following exception:\n" + e.getMessage());
 			System.out.println("Driver stopped due to the following exception:");
 			e.printStackTrace();
 		}
