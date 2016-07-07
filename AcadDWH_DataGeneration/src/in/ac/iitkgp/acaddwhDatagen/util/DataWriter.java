@@ -4,6 +4,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class DataWriter {
 	public static void writeToFile(String filePath, String content) {
@@ -37,6 +40,14 @@ public class DataWriter {
 				} catch (IOException e) {
 				}
 			}
+		}
+	}
+
+	public static void appendToFile(String filePath, String content) {
+		try {
+			Files.write(Paths.get(filePath), content.getBytes(), StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

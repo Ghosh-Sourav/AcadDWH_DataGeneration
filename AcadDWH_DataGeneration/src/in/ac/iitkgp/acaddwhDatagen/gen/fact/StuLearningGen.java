@@ -197,8 +197,8 @@ public class StuLearningGen {
 
 	public static void main(String[] args) throws Exception {
 		try {
-			String filePath = ProjectInfo.getPathToStore() + "fact_stu_learning_"
-					+ ProjectInfo.getSizeFactTeachingQuality() + "_max" + ".csv";
+			String filePath = ProjectInfo.getPathToStore() + "fact_stu_learning_" + ProjectInfo.getSizeFactStuLearning()
+					+ "_max" + ".csv";
 
 			String filePathCourse = ProjectInfo.getPathToStore() + "dim_courses_" + ProjectInfo.getSizeDimCourses()
 					+ ".csv";
@@ -224,14 +224,27 @@ public class StuLearningGen {
 			ArrayList<String> regtypeKeys = new DataReader().getFKeys(filePathRegtype);
 			System.out.println(filePathRegtype + " read");
 
-			System.out.println("Generating content...");
-			String content = new StuLearningGen().generate(courseKeysWithDept, studentKeysWithAdmYr,
-					timeKeysWithStartingYear, regtypeKeys);
-			System.out.println("Content generated");
+			DataWriter.writeToFile(filePath, "");
 
-			System.out.println("Writing to file...");
-			DataWriter.writeToFile(filePath, content);
-			System.out.println("File path: " + filePath);
+			int toIndex = 0;
+			while (toIndex < studentKeysWithAdmYr.size()) {
+				int fromIndex = toIndex;
+				toIndex = Math.min(fromIndex + 100, studentKeysWithAdmYr.size());
+
+				ArrayList<String> subList_studentKeysWithAdmYr = (ArrayList<String>) studentKeysWithAdmYr
+						.subList(fromIndex, toIndex);
+
+				System.out.println("Generating content... (" + fromIndex + "-" + toIndex + " of "
+						+ studentKeysWithAdmYr.size() + ")");
+				String content = new StuLearningGen().generate(courseKeysWithDept, subList_studentKeysWithAdmYr,
+						timeKeysWithStartingYear, regtypeKeys);
+				System.out.println("Content generated");
+
+				System.out.println("Writing to file...");
+				DataWriter.appendToFile(filePath, content);
+				System.out.println("File path: " + filePath);
+
+			}
 		} catch (Exception e) {
 			System.out.println("Aborted!");
 			throw (e);

@@ -173,15 +173,15 @@ public class RandomGen {
 			elems.add("8.0");
 			freqs.add(9.0);
 			elems.add("7.5");
-			freqs.add(22.0);
+			freqs.add(18.0);
 			elems.add("7.0");
-			freqs.add(26.0);
+			freqs.add(23.0);
 			elems.add("6.5");
 			freqs.add(22.0);
 			elems.add("6.0");
 			freqs.add(20.0);
 			elems.add("5.5");
-			freqs.add(1.0);
+			freqs.add(8.0);
 		}
 
 		double grade = Double.parseDouble(getFromPSet(elems, freqs));
