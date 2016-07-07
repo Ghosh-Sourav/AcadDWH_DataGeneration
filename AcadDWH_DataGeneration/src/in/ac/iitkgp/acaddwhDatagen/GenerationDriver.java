@@ -20,6 +20,7 @@ public class GenerationDriver {
 	public static void main(String[] args) {
 		String filePath = ProjectInfo.getPathToStore() + "LOG_phaseStats.log";
 		try {
+			System.out.println("Creating logfile at " + filePath + "...");
 			DataWriter.writeToFile(filePath, "");
 
 			DataWriter.appendToFile(filePath, "*** Phase 1 ***");
