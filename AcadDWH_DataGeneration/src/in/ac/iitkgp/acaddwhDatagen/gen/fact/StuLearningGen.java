@@ -35,9 +35,9 @@ public class StuLearningGen {
 			String deptKeyOfStudent = studentKey.substring(2, 4);
 			int admYr = Integer.parseInt(studentKeyWithAdmYr.split(",")[1]);
 
-			if (progressLineCount == 100) {
-				break;
-			}
+			// if (progressLineCount == 100) {
+			// break;
+			// }
 
 			System.out.println("Initiating line " + studentKey + " (" + (++progressLineCount) + "/"
 					+ studentKeysWithAdmYr.size() + ") ...");
