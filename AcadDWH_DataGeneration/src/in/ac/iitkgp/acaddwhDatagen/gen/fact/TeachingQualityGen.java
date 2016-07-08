@@ -10,8 +10,8 @@ import in.ac.iitkgp.acaddwhDatagen.util.RandomGen;
 
 public class TeachingQualityGen {
 
-	public String generate(ArrayList<String> courseKeysWithDept, ArrayList<String> teacherKeysWithDept,
-			ArrayList<String> timeKeys, ArrayList<String> evalAreaKeys) {
+	public void generateAndWrite(ArrayList<String> courseKeysWithDept, ArrayList<String> teacherKeysWithDept,
+			ArrayList<String> timeKeys, ArrayList<String> evalAreaKeys, String filePath) {
 		StringBuffer content = new StringBuffer();
 
 		ArrayList<String> elemsTeacher = null;
@@ -66,7 +66,7 @@ public class TeachingQualityGen {
 			do {
 				String nextTimeKey = null;
 				do {
-					System.out.println("noOfTimes = "+noOfTimes);
+					System.out.println("noOfTimes = " + noOfTimes);
 					System.out.println(elemsTime);
 					nextTimeKey = RandomGen.getFromPSet(elemsTime, freqsTime);
 				} while (courseTimeKeys.contains(nextTimeKey));
@@ -95,12 +95,19 @@ public class TeachingQualityGen {
 						content.append(evalAreaKey + ",");
 						content.append(noOfEvaluation + ",");
 						content.append(avgTeachingQuality + "\n");
+
+						if (content.length() > 100000) {
+							DataWriter.appendToFile(filePath, content.toString());
+							content.delete(0, content.length());
+						}
 					}
 				}
 			}
 		}
 
-		return content.toString();
+		DataWriter.appendToFile(filePath, content.toString());
+		content.delete(0, content.length());
+
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -132,13 +139,14 @@ public class TeachingQualityGen {
 			ArrayList<String> evalAreaKeys = new DataReader().getFKeys(filePathEvalArea);
 			System.out.println(filePathEvalArea + " read");
 
-			System.out.println("Generating content...");
-			String content = new TeachingQualityGen().generate(courseKeysWithDept, teacherKeysWithDept, timeKeys,
-					evalAreaKeys);
-			System.out.println("Content generated");
+			System.out.println("Initialising file...");
+			DataWriter.writeToFile(filePath, "");
 
-			System.out.println("Writing to file...");
-			DataWriter.writeToFile(filePath, content);
+			System.out.println("Generating content and writing...");
+			new TeachingQualityGen().generateAndWrite(courseKeysWithDept, teacherKeysWithDept, timeKeys, evalAreaKeys,
+					filePath);
+			System.out.println("Content generated and written");
+
 			System.out.println("File path: " + filePath);
 		} catch (Exception e) {
 			System.out.println("Aborted!");
