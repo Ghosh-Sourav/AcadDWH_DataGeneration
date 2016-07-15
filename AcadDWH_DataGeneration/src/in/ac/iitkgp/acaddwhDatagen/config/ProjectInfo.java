@@ -4,23 +4,42 @@ public class ProjectInfo {
 	private static String pathToStoreWindows = "G:/AcadDWH/Datagen/";
 	private static String pathToStoreLinux = "/home/sourav/AcadDWH/Datagen/";
 
-	private static long sizeDimDepartments = 68;
-	private static long sizeDimSpecialisations = 400;
-	private static long sizeDimStudents = 300000;
-	private static long sizeDimTeachers = 20000;
-	private static long sizeDimCourses = 10000;
-	private static long sizeDimEvalAreas = 32;
+	// private static long sizeDimDepartments = 68;
+	// private static long sizeDimSpecialisations = 400;
+	// private static long sizeDimStudents = 300000;
+	// private static long sizeDimTeachers = 20000;
+	// private static long sizeDimCourses = 10000;
+	// private static long sizeDimEvalAreas = 32;
+	// private static long sizeDimRegtypes = 3;
+	// private static int _firstOfStartingYear = 1966;
+	// private static int _firstOfEndingYear = 2015;
+	// private static long sizeDimTimes = 2 * (_firstOfEndingYear -
+	// _firstOfStartingYear + 1);
+	//
+	// private static long sizeIntermediateStudentCharacteristics = 300000;
+	//
+	// private static long sizeFactStuLearning = 210000000;
+	// private static long sizeFactSemPerformance = 300000;
+	// private static long sizeFactSplPerformance = 20000;
+	// private static long sizeFactTeachingQuality = 6804000;
+
+	private static long sizeDimDepartments = 34;
+	private static long sizeDimSpecialisations = 200;
+	private static long sizeDimStudents = 200000;
+	private static long sizeDimTeachers = 10000;
+	private static long sizeDimCourses = 8000;
+	private static long sizeDimEvalAreas = 24;
 	private static long sizeDimRegtypes = 3;
-	private static int _firstOfStartingYear = 1966;
+	private static int _firstOfStartingYear = 1991;
 	private static int _firstOfEndingYear = 2015;
 	private static long sizeDimTimes = 2 * (_firstOfEndingYear - _firstOfStartingYear + 1);
 
-	private static long sizeIntermediateStudentCharacteristics = 300000;
+	private static long sizeIntermediateStudentCharacteristics = 200000;
 
-	private static long sizeFactStuLearning = 210000000;
-	private static long sizeFactSemPerformance = 300000;
-	private static long sizeFactSplPerformance = 20000;
-	private static long sizeFactTeachingQuality = 6804000;
+	private static long sizeFactStuLearning = 70000000;
+	private static long sizeFactSemPerformance = 200000;
+	private static long sizeFactSplPerformance = 5000;
+	private static long sizeFactTeachingQuality = 2041200;
 
 	public static String getPathToStore() {
 		if (System.getProperty("os.name").contains("Windows")) {
