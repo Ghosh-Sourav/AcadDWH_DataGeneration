@@ -2,7 +2,7 @@ package in.ac.iitkgp.acaddwhDatagen.config;
 
 public class ProjectInfo {
 	private static String pathToStoreWindows = "G:/AcadDWH/Datagen/";
-	private static String pathToStoreLinux = "/home/sourav/AcadDWH/Datagen/";
+	private static String pathToStoreLinux = "/home/mt1/15CS60R16/AcadDWH/Datagen/";
 
 	// private static long sizeDimDepartments = 68;
 	// private static long sizeDimSpecialisations = 400;
@@ -23,12 +23,14 @@ public class ProjectInfo {
 	// private static long sizeFactSplPerformance = 20000;
 	// private static long sizeFactTeachingQuality = 6804000;
 
-	private static long sizeDimDepartments = 34;
-	private static long sizeDimSpecialisations = 200;
-	private static long sizeDimStudents = 200000;
-	private static long sizeDimTeachers = 10000;
-	private static long sizeDimCourses = 8000;
-	private static long sizeDimEvalAreas = 24;
+	private static String instituteKey = "INSJ/";
+	
+	private static long sizeDimDepartments = 38;
+	private static long sizeDimSpecialisations = 185;
+	private static long sizeDimStudents = 395346;
+	private static long sizeDimTeachers = 16532;
+	private static long sizeDimCourses = 7953;
+	private static long sizeDimEvalAreas = 17;
 	private static long sizeDimRegtypes = 3;
 	private static int _firstOfStartingYear = 1991;
 	private static int _firstOfEndingYear = 2015;
@@ -36,16 +38,16 @@ public class ProjectInfo {
 
 	private static long sizeIntermediateStudentCharacteristics = 200000;
 
-	private static long sizeFactStuLearning = 70000000;
-	private static long sizeFactSemPerformance = 200000;
-	private static long sizeFactSplPerformance = 5000;
-	private static long sizeFactTeachingQuality = 2041200;
+	private static long sizeFactStuLearning = 138371100;
+	private static long sizeFactSemPerformance = 395346;
+	private static long sizeFactSplPerformance = 4625;
+	private static long sizeFactTeachingQuality = 1437356;
 
 	public static String getPathToStore() {
 		if (System.getProperty("os.name").contains("Windows")) {
-			return pathToStoreWindows;
+			return pathToStoreWindows + instituteKey;
 		} else {
-			return pathToStoreLinux;
+			return pathToStoreLinux + instituteKey;
 		}
 	}
 
